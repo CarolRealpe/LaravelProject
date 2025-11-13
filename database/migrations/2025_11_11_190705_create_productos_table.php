@@ -25,7 +25,6 @@ return new class extends Migration
     $table->timestamps();
 });
 
-
     }
 
     /**
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos'); // 👈 agregado: elimina la tabla si se revierte la migración
+        Schema::dropIfExists('productos'); 
     }
-};
+};  

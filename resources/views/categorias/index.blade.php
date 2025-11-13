@@ -130,11 +130,11 @@
                     <span class="category-name">{{ $categoria->nombre }}</span>
                     <div class="actions">
                         <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-ver">👁 Ver</a>
-                        <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-editar">✏️ Editar</a>
+                        <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-editar"> Editar</a>
                         <form action="{{ route('categorias.destroy', $categoria) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-eliminar" onclick="return confirm('¿Eliminar esta categoría?')">🗑 Eliminar</button>
+                            <button type="submit" class="btn btn-eliminar" onclick="return confirm('¿Desea eliminar la categoría {{ $categoria->nombre }}?')">🗑 Eliminar</button>
                         </form>
                     </div>
                 </div>
