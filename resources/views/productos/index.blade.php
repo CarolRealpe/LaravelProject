@@ -28,10 +28,6 @@
         gap: 0.5rem;
     }
 
-    h1::before {
-        font-size: 1.4rem;
-    }
-
     .card {
         border: none;
         border-radius: 1rem;
@@ -61,7 +57,6 @@
         padding: 2rem;
     }
 
-    /* === Tabla === */
     .table {
         border-radius: 0.6rem;
         overflow: hidden;
@@ -83,7 +78,6 @@
         transition: 0.3s;
     }
 
-    /* === Botones === */
     .btn-primary {
         background: linear-gradient(90deg, #eaff7b, #b9fbc0);
         color: #1e1e1e;
@@ -146,6 +140,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
                             <th>Stock</th>
                             <th>Precio</th>
                             <th>Acciones</th>
@@ -160,12 +156,19 @@
                                         {{ $p->nombre }}
                                     </a>
                                 </td>
+                                <td>
+                                    {{ $p->categoria ? $p->categoria->nombre : 'Sin categoría' }}
+                                </td>
+                                <td>
+                                    {{ $p->descripcion ?: '—' }}
+                                </td>
                                 <td>{{ $p->stock }}</td>
                                 <td>${{ number_format($p->precio, 2) }}</td>
                                 <td>
                                     <div class="d-flex gap-2">
                                         <a class="btn btn-sm btn-warning" href="{{ route('productos.edit', $p) }}">Editar</a>
-                                        <form action="{{ route('productos.destroy', $p) }}" method="POST" onsubmit="return confirm('¿Deseas eliminar {{ $p->nombre }} de la lista?')">
+                                        <form action="{{ route('productos.destroy', $p) }}" method="POST" 
+                                              onsubmit="return confirm('¿Deseas eliminar {{ $p->nombre }} de la lista?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>

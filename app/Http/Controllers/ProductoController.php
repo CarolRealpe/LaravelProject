@@ -21,7 +21,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+         $categorias = \App\Models\Categoria::orderBy('nombre')->get();
+    return view('productos.create', compact('categorias'));
     }
 
     /**
@@ -82,6 +83,7 @@ class ProductoController extends Controller
     {
         $producto->delete();
 
-        return redirect()->route('productos.index')->with('Producto eliminado correctamente.');
+        return redirect()->route('productos.index')->with('ok', 'Producto eliminado correctamente.');
+
     }
 }
