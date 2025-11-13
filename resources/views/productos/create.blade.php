@@ -153,27 +153,27 @@
             <div class="invalid-feedback">{{ $message }}</div> 
         @enderror
     </div>
+    <div class="col-md-6">
+        <label for="categoria_id" class="form-label">Categoría</label>
+        <select name="categoria_id" id="categoria_id"
+            class="form-control @error('categoria_id') is-invalid @enderror" required>
+            <option value="">Selecciona una categoría</option>
+            @foreach($categorias as $categoria)
+                <option value="{{ $categoria->id }}"
+                    {{ old('categoria_id', $p->categoria_id ?? '') == $categoria->id ? 'selected' : '' }}>
+                    {{ $categoria->nombre }}
+                </option>
+            @endforeach
+        </select>
+        @error('categoria_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
     <div class="d-flex justify-content-center gap-3 mt-4">
         <button class="btn btn-primary px-4">Guardar</button>
         <a href="{{ route('productos.index') }}" class="btn btn-danger px-4">Cancelar</a>
     </div>
-    <div class="col-md-6">
-    <label for="categoria_id" class="form-label">Categoría</label>
-    <select name="categoria_id" id="categoria_id" 
-            class="form-control @error('categoria_id') is-invalid @enderror" required>
-        <option value="">Seleccione una categoría</option>
-        @foreach($categorias as $categoria)
-            <option value="{{ $categoria->id }}" 
-                {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>
-                {{ $categoria->nombre }}
-            </option>
-        @endforeach
-    </select>
-    @error('categoria_id')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-</div>
-
+    
 </form>
 @endsection

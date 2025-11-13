@@ -56,7 +56,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('productos.edit', compact('producto'));
+        $categorias = \App\Models\Categoria::all();
+        return view('productos.edit', compact('producto', 'categorias'));
     }
 
     /**
@@ -69,6 +70,7 @@ class ProductoController extends Controller
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'descripcion' => 'nullable|string',
+            'categoria_id' => 'required|exists:categorias,id',
         ]);
 
         $producto->update($data);

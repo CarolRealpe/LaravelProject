@@ -149,6 +149,22 @@
                 <button type="submit" class="btn btn-warning">💾 Actualizar</button>
                 <a href="{{ route('vendedores.index') }}" class="btn btn-secondary">↩️ Cancelar</a>
             </div>
+            <div class="col-md-6">
+    <label for="categoria_id" class="form-label">Categoría</label>
+    <select name="categoria_id" id="categoria_id" class="form-control @error('categoria_id') is-invalid @enderror" required>
+        <option value="">Selecciona una categoría</option>
+        @foreach($categorias as $categoria)
+            <option value="{{ $categoria->id }}" 
+                {{ old('categoria_id', $producto->categoria_id) == $categoria->id ? 'selected' : '' }}>
+                {{ $categoria->nombre }}
+            </option>
+        @endforeach
+    </select>
+    @error('categoria_id')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
         </form>
     </div>
 </div>

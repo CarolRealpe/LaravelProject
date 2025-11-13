@@ -143,6 +143,18 @@
                 <textarea name="descripcion" class="form-control">{{ $producto->descripcion }}</textarea>
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">Categoría</label>
+                <select name="categoria_id" class="form-control" required>
+                    <option value="">Selecciona una categoría</option>
+                    @foreach($categorias as $categoria)
+                        <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>
+                            {{ $categoria->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Actualizar</button>
             <a href="{{ route('productos.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
